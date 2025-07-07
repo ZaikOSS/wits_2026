@@ -192,17 +192,51 @@ export default function RegistrationPage() {
             </div>
 
             <div className="mt-12 max-w-3xl mx-auto p-6 rounded-xl bg-red-900/30 border border-red-600 text-red-200 text-center text-lg">
-              <p>
-                Please send us a scanned copy of the payment receipt with the
-                completed registration form to:{" "}
-                <span className="text-white font-semibold underline">
-                  wits-conference@usmba.ac.ma
-                </span>
-              </p>
-              <p className="mt-2">
-                <strong className="text-white">Subject:</strong> Registration
-                for [please add your paper ID or Listener or Industrial]
-              </p>
+              <div className="space-y-4">
+                <p className="font-semibold text-white">Payment Information:</p>
+
+                <div className="text-left space-y-2">
+                  <p>
+                    <span className="font-medium">Bank Name:</span> Banque
+                    Populaire
+                  </p>
+                  <p>
+                    <span className="font-medium">Address:</span> Agence AL
+                    AZHAR – FEZ – MOROCCO
+                  </p>
+                  <p>
+                    <span className="font-medium">Account Number:</span> MA
+                    1272702111627249200009 94
+                  </p>
+                  <p>
+                    <span className="font-medium">SWIFT Code:</span> BCPOMAMC
+                  </p>
+                  <p>
+                    <span className="font-medium">Receiver:</span> Association
+                    Nationale de recherche en Ingénierie des Technologies
+                    Emergentes
+                  </p>
+                  <p>
+                    <span className="font-medium">Transfer Reason:</span> WITS
+                    2023 + Paper ID
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-red-600">
+                  <p>
+                    Please send us a scanned copy of the payment receipt with
+                    the completed registration form to:{" "}
+                    <span className="text-white font-semibold underline">
+                      wits-conference@usmba.ac.ma
+                    </span>
+                  </p>
+                  <p className="mt-2">
+                    <strong className="text-white">Subject:</strong>{" "}
+                    Registration for [please add your paper ID or Listener or
+                    Industrial]
+                  </p>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
