@@ -6,7 +6,37 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icon } from "@/components/icon-mapper";
-import { PDFDownloadButton } from "@/components/RegistrationPDF";
+import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
+// Dynamic import for the PDF components
+const PDFDownloadButton = dynamic(
+  () => {
+    const component = import("@react-pdf/renderer").then((pdf) => {
+      const { PDFDownloadLink } = pdf;
+      const { RegistrationPDF } = require("@/components/RegistrationPDF");
+
+      return ({ formData }: { formData: any }) => (
+        <PDFDownloadLink
+          document={<RegistrationPDF formData={formData} />}
+          fileName="WITS-2023-Registration-Form.pdf"
+          className="inline-block"
+        >
+          {({ loading }) => (
+            <Button disabled={loading}>
+              {loading ? "Preparing document..." : "Download Registration Form"}
+            </Button>
+          )}
+        </PDFDownloadLink>
+      );
+    });
+    return component;
+  },
+  {
+    ssr: false,
+    loading: () => <Button disabled>Loading PDF...</Button>,
+  }
+);
 
 export default function RegistrationPage() {
   const [formData, setFormData] = useState({
@@ -49,11 +79,11 @@ export default function RegistrationPage() {
             Register for WITS 2026
           </h1>
           <p className="text-xl text-slate-400 max-w-4xl mx-auto font-medium">
-            Secure your spot at the premier conference on information technologies and systems
+            Secure your spot at the premier conference on information
+            technologies and systems
           </p>
         </div>
 
-        {/* Registration Form */}
         <Card className="bg-slate-900/30 border-slate-800 backdrop-blur-sm mb-20">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-3 text-2xl">
@@ -65,39 +95,115 @@ export default function RegistrationPage() {
           </CardHeader>
           <CardContent className="space-y-6 text-slate-300">
             <div className="grid md:grid-cols-2 gap-6">
-              <Field id="title" label="Title (Professor/Student/Industrial/Other)" value={formData.title} onChange={handleChange} />
-              <Field id="civility" label="Civility (Mr./Mrs./Miss)" value={formData.civility} onChange={handleChange} />
-              <Field id="lastName" label="Last Name" value={formData.lastName} onChange={handleChange} />
-              <Field id="firstName" label="First Name" value={formData.firstName} onChange={handleChange} />
-              <Field id="organization" label="Organization" value={formData.organization} onChange={handleChange} />
-              <Field id="address" label="Address" value={formData.address} onChange={handleChange} />
-              <Field id="postalCode" label="Postal Code" value={formData.postalCode} onChange={handleChange} />
-              <Field id="city" label="City" value={formData.city} onChange={handleChange} />
-              <Field id="country" label="Country" value={formData.country} onChange={handleChange} />
-              <Field id="email" label="Email" value={formData.email} onChange={handleChange} />
-              <Field id="phone" label="Phone" value={formData.phone} onChange={handleChange} />
-              <Field id="fax" label="Fax" value={formData.fax} onChange={handleChange} />
-              <Field id="paperId1" label="Paper ID 1" value={formData.paperId1} onChange={handleChange} />
-              <Field id="paperId2" label="Paper ID 2" value={formData.paperId2} onChange={handleChange} />
-              <Field id="paperId3" label="Paper ID 3" value={formData.paperId3} onChange={handleChange} />
+              <Field
+                id="title"
+                label="Title (Professor/Student/Industrial/Other)"
+                value={formData.title}
+                onChange={handleChange}
+              />
+              <Field
+                id="civility"
+                label="Civility (Mr./Mrs./Miss)"
+                value={formData.civility}
+                onChange={handleChange}
+              />
+              <Field
+                id="lastName"
+                label="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+              <Field
+                id="firstName"
+                label="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+              <Field
+                id="organization"
+                label="Organization"
+                value={formData.organization}
+                onChange={handleChange}
+              />
+              <Field
+                id="address"
+                label="Address"
+                value={formData.address}
+                onChange={handleChange}
+              />
+              <Field
+                id="postalCode"
+                label="Postal Code"
+                value={formData.postalCode}
+                onChange={handleChange}
+              />
+              <Field
+                id="city"
+                label="City"
+                value={formData.city}
+                onChange={handleChange}
+              />
+              <Field
+                id="country"
+                label="Country"
+                value={formData.country}
+                onChange={handleChange}
+              />
+              <Field
+                id="email"
+                label="Email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              <Field
+                id="phone"
+                label="Phone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+              <Field
+                id="fax"
+                label="Fax"
+                value={formData.fax}
+                onChange={handleChange}
+              />
+              <Field
+                id="paperId1"
+                label="Paper ID 1"
+                value={formData.paperId1}
+                onChange={handleChange}
+              />
+              <Field
+                id="paperId2"
+                label="Paper ID 2"
+                value={formData.paperId2}
+                onChange={handleChange}
+              />
+              <Field
+                id="paperId3"
+                label="Paper ID 3"
+                value={formData.paperId3}
+                onChange={handleChange}
+              />
             </div>
 
-            {/* PDF Download Button */}
             <div className="flex justify-center mt-8">
               <PDFDownloadButton formData={formData} />
             </div>
 
-{/* Instructional Message */}
-<div className="mt-12 max-w-3xl mx-auto p-6 rounded-xl bg-red-900/30 border border-red-600 text-red-200 text-center text-lg">
-  <p>
-    Please send us a scanned copy of the payment receipt with the completed registration form to the following email address:{" "}
-    <span className="text-white font-semibold underline">wits-conference@usmba.ac.ma</span>
-  </p>
-  <p className="mt-2">
-    <strong className="text-white">Subject:</strong> Registration for [please add your paper ID or Listener or Industrial]
-  </p>
-</div>
-
+            <div className="mt-12 max-w-3xl mx-auto p-6 rounded-xl bg-red-900/30 border border-red-600 text-red-200 text-center text-lg">
+              <p>
+                Please send us a scanned copy of the payment receipt with the
+                completed registration form to:{" "}
+                <span className="text-white font-semibold underline">
+                  wits-conference@usmba.ac.ma
+                </span>
+              </p>
+              <p className="mt-2">
+                <strong className="text-white">Subject:</strong> Registration
+                for [please add your paper ID or Listener or Industrial]
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

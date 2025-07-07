@@ -1,20 +1,12 @@
 "use client";
 
-import {
-  PDFDownloadLink,
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-} from "@react-pdf/renderer";
-import { Button } from "@/components/ui/button";
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
 // PDF styles
 const styles = StyleSheet.create({
   page: {
     padding: 40,
-    fontFamily: "Helvetica", // safer default for PDF rendering
+    fontFamily: "Helvetica",
   },
   header: {
     marginBottom: 20,
@@ -87,7 +79,6 @@ export const RegistrationPDF = ({ formData }: { formData: any }) => (
 
       <View style={styles.section}>
         <Text style={styles.label}>Submitted Papers</Text>
-
         <Text style={styles.instructionText}>
           Paper ID 1: {formData.paperId1 || "-"}
         </Text>
@@ -150,19 +141,4 @@ export const RegistrationPDF = ({ formData }: { formData: any }) => (
       </View>
     </Page>
   </Document>
-);
-
-// PDF Download Button
-export const PDFDownloadButton = ({ formData }: { formData: any }) => (
-  <PDFDownloadLink
-    document={<RegistrationPDF formData={formData} />}
-    fileName="WITS-2023-Registration-Form.pdf"
-    className="inline-block"
-  >
-    {({ loading }) => (
-      <Button disabled={loading}>
-        {loading ? "Preparing document..." : "Download Registration Form"}
-      </Button>
-    )}
-  </PDFDownloadLink>
 );
