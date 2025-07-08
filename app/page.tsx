@@ -13,58 +13,55 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 border-b border-slate-800">
-        {/* Background layers - removed dot pattern if you want exact match */}
-        <div
-          className="absolute inset-0 bg-[url('/1.png')] bg-cover bg-center opacity-40"
-          style={{
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          }}
-        />
+      <section className="relative overflow-hidden min-h-screen bg-black">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/fes.jpg"
+            alt="Event Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        {/* Gradient overlay matching nav bar transparency */}
-        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" />
+        <div className="absolute inset-0 z-0 bg-black/60" />
 
-        <div className="relative container mx-auto px-4 py-32 md:py-40">
-          <div className="text-center space-y-12 animate-fade-in">
-            <div className="space-y-8">
+        <div className="relative z-10 container mx-auto px-4 py-32 md:py-40 h-full flex items-center">
+          <div className="text-center w-full max-w-6xl mx-auto">
+            <div className="inline-block p-8 md:p-12 space-y-8 animate-fade-in">
               <Badge
                 variant="outline"
-                className="border-slate-700 text-slate-400 bg-slate-900/50 px-6 py-2 text-sm font-medium backdrop-blur-sm"
+                className="border-white/30 text-white bg-black/20 px-6 py-2 text-sm font-medium"
               >
                 {data.hero.badge}
               </Badge>
 
               <div className="space-y-6">
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-none tracking-tight">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight tracking-tight">
                   {data.hero.title}
                 </h1>
-                <p className="text-2xl md:text-3xl text-slate-400 max-w-4xl mx-auto leading-relaxed font-medium">
+                <p className="text-xl md:text-2xl text-slate-200 max-w-4xl mx-auto leading-relaxed font-medium">
                   {data.hero.subtitle}
                 </p>
               </div>
 
-              <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
                 {data.hero.description}
               </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-              <Button
-                size="lg"
-                className="bg-white text-slate-950 hover:bg-slate-100 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 hover:scale-105"
-              >
-                <Link href="/registration">Register Now</Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-slate-700 text-slate-300 hover:bg-slate-900 hover:border-slate-600 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 bg-transparent"
-              >
-                <Link href="/call-for-papers">Submit Paper</Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+                >
+                  <Link href="/registration">Register Now</Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
+                >
+                  <Link href="/call-for-papers">Submit Paper</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
